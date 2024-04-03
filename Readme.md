@@ -1,4 +1,4 @@
-<a href="https://www.linkedin.com/in/jinergenkai"><img src="https://github.com/jinergenkai/chickies_ui/blob/main/assets/images/chickies_logo.png" alt="chickies_logo" style="width:100px;"/></a>
+<a href="https://www.linkedin.com/in/jinergenkai"><img src="./assets/images/chickies_logo.png" alt="chickies_logo" style="width:100px;"/></a>
 # Chickies UI
   a Beatiful widget gallery template for flutter.
   I create my own widget to reuse for many project on my journey. let contact and contribute it if you interest.
