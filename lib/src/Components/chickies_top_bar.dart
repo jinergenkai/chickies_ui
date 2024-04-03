@@ -1,5 +1,22 @@
 import 'package:chickies_ui/src/Colors.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+
+@widgetbook.UseCase(
+  name: 'Button',
+  type: ChickiesTopBar,
+)
+ChickiesTopBar chickiesTopBarUseCase(BuildContext context) {
+  return ChickiesTopBar(
+    tabs: [
+      Container(color: ChickiesColor.red),
+      Container(color: ChickiesColor.green),
+      // Container(color: ChickiesColor.blue),
+    ],
+    titles: ['Tab 1', 'Tab 2'],
+    title: 'Title',
+  );
+}
 
 class ChickiesTopBar extends StatefulWidget {
   const ChickiesTopBar({
