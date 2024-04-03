@@ -23,7 +23,7 @@
   ```
   import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   ```
-  - Add usecase (widget to show in widgetbook), example:
+  - Add usecase above widget you created (widget to show in widgetbook), example:
   ```
   @widgetbook.UseCase(
     name: 'Button',
