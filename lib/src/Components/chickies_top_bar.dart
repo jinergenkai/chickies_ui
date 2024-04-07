@@ -24,11 +24,15 @@ class ChickiesTopBar extends StatefulWidget {
     required this.tabs,
     required this.titles,
     required this.title,
+    this.icons,
+    this.titleStyle,
   });
 
   final List<Widget> tabs;
   final List<String> titles;
+  final List<Icon?>? icons;
   final String title;
+  final TextStyle? titleStyle;
 
   @override
   State<ChickiesTopBar> createState() => _ChickiesTopBarState();
@@ -36,10 +40,13 @@ class ChickiesTopBar extends StatefulWidget {
 
 class _ChickiesTopBarState extends State<ChickiesTopBar> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  late int length;
 
   @override
   void initState() {
-    _tabController = TabController(length: 2, vsync: this);
+    if (widget.titles.length != widget.tabs.length) throw Exception('Titles and Tabs must have the same length');
+    length = widget.titles.length;
+    _tabController = TabController(length: length, vsync: this);
     super.initState();
   }
 
@@ -52,8 +59,8 @@ class _ChickiesTopBarState extends State<ChickiesTopBar> with SingleTickerProvid
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
-      length: 3,
+      initialIndex: 0,
+      length: length,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: ChickiesColor.white,
@@ -61,9 +68,9 @@ class _ChickiesTopBarState extends State<ChickiesTopBar> with SingleTickerProvid
           toolbarHeight: 50,
           title: Text(
             widget.title,
-            style: TextStyle(
+            style: widget.titleStyle ?? TextStyle(
               color: ChickiesColor.grey2,
-              fontSize: 50,
+              fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -73,7 +80,7 @@ class _ChickiesTopBarState extends State<ChickiesTopBar> with SingleTickerProvid
           children: [
             Container(
               height: 40,
-              width: MediaQuery.of(context).size.width * 60 / 100,
+              width: MediaQuery.of(context).size.width * 95 / 100,
               decoration: BoxDecoration(
                 color: ChickiesColor.grey,
                 borderRadius: BorderRadius.circular(16.0),
@@ -81,7 +88,7 @@ class _ChickiesTopBarState extends State<ChickiesTopBar> with SingleTickerProvid
               child: TabBar(
                 dividerColor: ChickiesColor.transparent,
                 controller: _tabController,
-                padding: EdgeInsets.all(4),
+                padding: EdgeInsets.all(3),
                 indicator: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
                   color: ChickiesColor.primary,
@@ -89,7 +96,20 @@ class _ChickiesTopBarState extends State<ChickiesTopBar> with SingleTickerProvid
                 indicatorSize: TabBarIndicatorSize.tab,
                 labelColor: ChickiesColor.white,
                 unselectedLabelColor: ChickiesColor.grey2,
-                tabs: widget.titles.map((e) => Tab(text: e)).toList(),
+                tabs: widget.titles
+                    .asMap()
+                    .map((index, title) => MapEntry(
+                          index,
+                          Tab(
+                            // text: title,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [widget.icons?[index] ?? SizedBox(width: 0), SizedBox(width: 2), Text(title, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))],
+                            ),
+                          ),
+                        ))
+                    .values
+                    .toList(),
               ),
             ),
             SizedBox(
