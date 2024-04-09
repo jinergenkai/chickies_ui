@@ -26,6 +26,8 @@ class ChickiesTopBar extends StatefulWidget {
     required this.title,
     this.icons,
     this.titleStyle,
+    this.floatingActionButton,
+    this.leading,
   });
 
   final List<Widget> tabs;
@@ -33,6 +35,8 @@ class ChickiesTopBar extends StatefulWidget {
   final List<Icon?>? icons;
   final String title;
   final TextStyle? titleStyle;
+  final Widget? floatingActionButton;
+  final Widget? leading;
 
   @override
   State<ChickiesTopBar> createState() => _ChickiesTopBarState();
@@ -62,17 +66,20 @@ class _ChickiesTopBarState extends State<ChickiesTopBar> with SingleTickerProvid
       initialIndex: 0,
       length: length,
       child: Scaffold(
+        backgroundColor: ChickiesColor.white,
         appBar: AppBar(
+          leading: widget.leading,
           backgroundColor: ChickiesColor.white,
           elevation: 0,
           toolbarHeight: 50,
           title: Text(
             widget.title,
-            style: widget.titleStyle ?? TextStyle(
-              color: ChickiesColor.grey2,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
+            style: widget.titleStyle ??
+                TextStyle(
+                  color: ChickiesColor.grey2,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           centerTitle: true,
         ),
@@ -123,6 +130,7 @@ class _ChickiesTopBarState extends State<ChickiesTopBar> with SingleTickerProvid
             ),
           ],
         ),
+        floatingActionButton: widget.floatingActionButton,
       ),
     );
   }
