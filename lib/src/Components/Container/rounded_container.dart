@@ -11,6 +11,7 @@ class RoundedContainer extends Container {
     super.child,
     super.color,
     super.decoration,
+    super.alignment,
   });
 
   @override
@@ -18,6 +19,7 @@ class RoundedContainer extends Container {
     return Container(
         padding: padding,
         margin: margin,
+        alignment: alignment,
         constraints: constraints,
         decoration: decoration ??
             BoxDecoration(
