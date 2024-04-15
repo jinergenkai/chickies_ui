@@ -13,15 +13,24 @@ abstract final class ChickiesColor {
   static const Color yellow = Color.fromARGB(255, 214, 214, 125);
 
   static const Color green = Color.fromARGB(255, 125, 214, 153);
+  static const Color green100 = Color(0xFF9AC8CD);
   static const Color pink = Color.fromARGB(255, 214, 125, 193);
   static const Color blue = Color.fromARGB(255, 125, 177, 214);
+  static const Color blue100 = Color(0xFF40A2E3);
+  static const Color blue200 = Color(0xFF0E46A3);
+  static const Color blue300 = Color(0xFFE1F7F5);
 
   static const Color black = Color(0xFF000000);
+  static const Color black100 = Color(0xFF1E0342);
+
   static const Color white = Color(0xFFFFFFFF);
   static const Color transparent = Color(0x00000000);
 
+  // static const pharmacyPattern = [, , , ];
+
   // static const Color primary = purple;
-  static const Color primary = blue;
+  // static const Color primary = blue;
+  static const Color primary = blue100;
   static const Color secondary = grey;
   static const Color background = grey;
   static const Color textPrimary = black;
