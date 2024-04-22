@@ -28,6 +28,7 @@ class ChickiesTopBar extends StatefulWidget {
     this.titleStyle,
     this.floatingActionButton,
     this.leading,
+    this.actionWhenChangeTab,
   });
 
   final List<Widget> tabs;
@@ -37,6 +38,7 @@ class ChickiesTopBar extends StatefulWidget {
   final TextStyle? titleStyle;
   final Widget? floatingActionButton;
   final Widget? leading;
+  final Function(int)? actionWhenChangeTab;
 
   @override
   State<ChickiesTopBar> createState() => _ChickiesTopBarState();
@@ -51,6 +53,9 @@ class _ChickiesTopBarState extends State<ChickiesTopBar> with SingleTickerProvid
     if (widget.titles.length != widget.tabs.length) throw Exception('Titles and Tabs must have the same length');
     length = widget.titles.length;
     _tabController = TabController(length: length, vsync: this);
+    _tabController.addListener(() {
+      if (widget.actionWhenChangeTab != null) widget.actionWhenChangeTab!(_tabController.index);
+    });
     super.initState();
   }
 

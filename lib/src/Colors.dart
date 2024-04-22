@@ -10,6 +10,8 @@ abstract final class ChickiesColor {
   static const Color red = Color(0xFFc65158);
   static const Color red2 = Color.fromARGB(255, 226, 130, 136);
 
+  static const Color orange = Color.fromARGB(255, 255, 194, 95);
+
   static const Color yellow = Color.fromARGB(255, 214, 214, 125);
 
   static const Color green = Color.fromARGB(255, 125, 214, 153);
