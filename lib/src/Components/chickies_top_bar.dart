@@ -116,7 +116,7 @@ class _ChickiesTopBarState extends State<ChickiesTopBar> with SingleTickerProvid
                             // text: title,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [widget.icons?[index] ?? SizedBox(width: 0), SizedBox(width: 2), Text(title, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))],
+                              children: [widget.icons?[index] ?? SizedBox(width: 0), SizedBox(width: 2), Text(title, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold))],
                             ),
                           ),
                         ))
