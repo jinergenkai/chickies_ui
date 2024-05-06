@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import '../../../chickies_ui.dart';
 
 class CardSwipe extends StatefulWidget {
-  const CardSwipe({super.key, required this.child, required this.onPressed, this.height = 80, this.width = 100});
+  const CardSwipe({super.key, required this.child, required this.onPressed, required this.height, required this.width, this.actions});
 
   final Function onPressed;
   final double height;
   final double width;
   final Widget child;
+  final List<Widget>? actions;
 
   @override
   State<CardSwipe> createState() => _CardSwipeState();
@@ -39,18 +40,16 @@ class _CardSwipeState extends State<CardSwipe> {
                   setState(() => _position = 0);
                 }
               },
-              child: widget.child,
-            ),
-          ),
-          Positioned(
-            left: MediaQuery.of(context).size.width + _position,
-            bottom: 5,
-            top: 5,
-            child: RoundedContainer(
-              color: ChickiesColor.red,
-              child: IntrinsicWidth(child: IconButton(onPressed: widget.onPressed as void Function()?, icon: Icon(Icons.delete_outline_rounded, color: ChickiesColor.white))),
-              padding: const EdgeInsets.all(0),
-              margin: const EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      widget.onPressed();
+                    },
+                    child: widget.child),
+                  ...widget.actions ?? [],
+                ],
+              ),
             ),
           ),
         ],
