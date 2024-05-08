@@ -7,6 +7,7 @@ abstract final class ChickiesColor {
   static const Color shadow = Color.fromARGB(255, 211, 221, 238);
   static const Color grey2 = Color(0xFF43516c);
   static const Color grey3 = Color(0xFFe9eff4);
+  static const Color grey4 = Color.fromARGB(255, 133, 152, 170);
   static const Color red = Color(0xFFc65158);
   static const Color red2 = Color.fromARGB(255, 226, 130, 136);
 

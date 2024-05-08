@@ -72,7 +72,7 @@ class _ChickiesTopBarState extends State<ChickiesMultipleBar> with SingleTickerP
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          centerTitle: true,
+          //centerTitle: true,
           actions: widget.actions,
         ),
         body: Column(
