@@ -14,8 +14,10 @@ class ChickiesMultipleBar extends StatefulWidget {
     this.leading,
     this.actionWhenChangeTab,
     this.actions,
+    this.tags,
   });
 
+  final List<Widget>? tags;
   final List<Widget> tabs;
   final List<String> titles;
   final List<Icon?>? icons;
@@ -37,6 +39,8 @@ class _ChickiesTopBarState extends State<ChickiesMultipleBar> with SingleTickerP
   @override
   void initState() {
     if (widget.titles.length != widget.tabs.length) throw Exception('Titles and Tabs must have the same length');
+    if (widget.icons != null && widget.icons!.length != widget.tabs.length)
+     throw Exception('Icons and Tabs must have the same length');
     length = widget.titles.length;
     _tabController = TabController(length: length, vsync: this);
     _tabController.addListener(() {
@@ -85,20 +89,43 @@ class _ChickiesTopBarState extends State<ChickiesMultipleBar> with SingleTickerP
               indicatorSize: TabBarIndicatorSize.tab,
               labelColor: ChickiesColor.primary,
               unselectedLabelColor: ChickiesColor.grey2,
-              tabs: widget.titles
-                  .asMap()
-                  .map((index, title) => MapEntry(
-                        index,
-                        Tab(
-                          // text: title,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [widget.icons?[index] ?? SizedBox(width: 0), SizedBox(width: 2), Text(title, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))],
-                          ),
-                        ),
-                      ))
-                  .values
-                  .toList(),
+              tabs: (widget.tags != null)
+                  ? widget.titles
+                      .asMap()
+                      .map((index, title) => MapEntry(
+                            index,
+                            Tab(
+                              // text: title,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  widget.icons?[index] ?? SizedBox(width: 0),
+                                  SizedBox(width: 2),
+                                  Text(
+                                    title,
+                                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                                  ),
+                                  widget.tags![index],
+                                ],
+                              ),
+                            ),
+                          ))
+                      .values
+                      .toList()
+                  : widget.titles
+                      .asMap()
+                      .map((index, title) => MapEntry(
+                            index,
+                            Tab(
+                              // text: title,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [widget.icons?[index] ?? SizedBox(width: 0), SizedBox(width: 2), Text(title, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))],
+                              ),
+                            ),
+                          ))
+                      .values
+                      .toList(),
             ),
             SizedBox(height: 1),
             Expanded(
